@@ -81,3 +81,17 @@ app.delete('/removeList', function(req, res) {
     }
   });
 });
+
+app.post('/completeList', function(req, res) {
+  pool.connect(function(err, connection, done) {
+    if (err) {
+      console.log('error');
+      done();
+      res.sendStatus(400);
+    } else {
+      connection.query("UPDATE todo SET completed = true WHERE id = " + Number(req.body.id));
+      done();
+      res.sendStatus(201);
+    }
+  });
+});

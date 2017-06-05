@@ -5,6 +5,7 @@ $(document).ready(function() {
   //submit button click function
   $('.submit').on('click', addToList);
   $('.display').on('click', '.deleteButton', removeFromList);
+  $('.display').on('click', '.doneButton', completeTask);
 });
 
 //add to list funciton
@@ -39,23 +40,41 @@ function removeFromList() {
 
 } //end remove from list
 
+//complete Task function
+function completeTask() {
+  var requestObject = {
+    id: $(this).siblings('.key').text()
+  };
+  $.ajax({
+    type: 'post',
+    url: '/completeList',
+    data: requestObject,
+    success: getList
+  });
+} // end completeTask
+
 //get list function
 function getList() {
   $('.display').empty();
+  $('.completed').empty();
   $.ajax({
     type: 'GET',
     url: '/getList',
     success: function(response) {
       console.log(response);
       for (var i = 0; i < response.length; i++) {
-        var $div = $('<div>');
-        $div.addClass('taskItem');
-        $div.append('<h3>Task:</h3>' + response[i].task);
-        $div.append('<h3>Notes:</h3>' + response[i].notes);
-        $div.append('<p class="key">' + response[i].id);
-        $div.append('<button class="doneButton">Done</div>');
-        $div.append('<button class="deleteButton">Delete</div>');
-        $('.display').append($div);
+        if (response[i].completed) {
+          $('.completed').append('<h3>' + response[i].task + '</h3>');
+        } else {
+          var $div = $('<div>');
+          $div.addClass('taskItem');
+          $div.append('<h3>' + response[i].task + '</h3><br>');
+          $div.append('<h3>' + response[i].notes + '</h3><br>');
+          $div.append('<p class="key">' + response[i].id);
+          $div.append('<button class="doneButton">Done</div>');
+          $div.append('<button class="deleteButton">Delete</div>');
+          $('.display').append($div);
+        }
       } //end loop
     } //end success function
   }); //end ajax

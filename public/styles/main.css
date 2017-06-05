@@ -13,6 +13,15 @@ body {
   margin-top: 20px;
 }
 
+input {
+  background-color: #d8d9ed;
+  border: solid 1px #a1a1a1;
+}
+
+input:focus {
+  outline: none;
+}
+
 button {
   background-color: #ddb756;
   color: #3c3c3c;
@@ -27,6 +36,7 @@ button {
   margin-top: 20px;
   margin-left: 10px;
   margin-right: 10px;
+  transition-duration: 200ms;
 }
 
 button:hover {
@@ -50,6 +60,10 @@ button:focus {
   width: 40%;
   margin: auto;
   margin-top: 20px;
+}
+
+.key {
+  display: none;
 }
 
 h1 {
