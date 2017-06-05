@@ -1,3 +1,57 @@
 body {
-  color: #b9396f
+  background-color: #6165bd;
+  font-family: 'open sans';
+  font-weight: 800;
+  text-align: center;
+}
+
+.submitTask {
+  background-color: #b1b4e9;
+  padding: 20px;
+  width: 40%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+button {
+  background-color: #ddb756;
+  color: #3c3c3c;
+  border: none;
+  font-family: 'open sans';
+  font-weight: 800;
+  font-size: 12pt;
+  padding: 3px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 3px;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #fbc439;
+  color: #000000;
+  box-shadow: 0px 0px 2px 2px #a0a1bf;
+}
+
+button:active {
+  box-shadow: 0px 0px 0px 0px #000000;
+  transform: translate(0px, 2px);
+}
+
+button:focus {
+  outline: none;
+}
+
+.taskItem {
+  background-color: #b1b4e9;
+  padding: 20px;
+  width: 40%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 48px;
 }

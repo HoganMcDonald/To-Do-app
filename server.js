@@ -51,3 +51,33 @@ app.get('/getList', function(req, res) {
     }
   }); //end pool.connect
 }); //end get list
+
+//post to list
+app.post('/addList', function(req, res) {
+  pool.connect(function(err, connection, done) {
+    if (err) {
+      console.log('error');
+      done();
+      res.sendStatus(400);
+    } else {
+      connection.query('INSERT INTO todo (task, notes) VALUES ($1, $2)', [req.body.task, req.body.notes]);
+      done();
+      res.sendStatus(201);
+    }
+  }); //end pool.connect
+}); //end post to list
+
+//delete from list
+app.delete('/removeList', function(req, res) {
+  pool.connect(function(err, connection, done) {
+    if (err) {
+      console.log('error');
+      done();
+      res.sendStatus(400);
+    } else {
+      connection.query("DELETE FROM todo WHERE id = " + Number(req.body.id));
+      done();
+      res.sendStatus(201);
+    }
+  });
+});
